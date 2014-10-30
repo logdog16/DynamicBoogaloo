@@ -4,6 +4,8 @@
 #include "Time.h"
 using namespace std;
 
+
+
 // Time constructor initializes each data member to zero.
  Time::Time()
  {
@@ -40,3 +42,16 @@ cout << ( (hour == 0 || hour == 12 ) ? 12 : hour % 12 ) << ":"
  << setfill('0') << setw( 2 ) << minute << ":" << setw( 2 )
  << second << (hour < 12 ? " AM" : " PM" );
  } // end function printStandard
+
+  ostream& operator<< (ostream &out, Time &ourTime)
+ {
+
+    out << cout << setfill('0') << setw( 2 ) << ourTime.hour << ":"
+    		 << setw( 2 ) << ourTime.minute << ":" << setw( 2 ) << ourTime.second;
+     return out;
+ }
+
+  //Time& operator++ ()
+	//{
+	//  this.second++;
+	//}

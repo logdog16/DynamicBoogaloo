@@ -8,6 +8,8 @@ class Time
  void setTime( int, int, int ); // set hour, minute and second
  void printUniversal(); // print time in universal-time format
  void printStandard(); // print time in standard-time format
+ friend std::ostream& operator<< (std::ostream &, Time &);
+ Time& operator++();
 
  private:
  int hour; // 0 - 23 (24-hour clock format)
