@@ -1,9 +1,3 @@
-// Fig. 9.1:
-// Time class definition.
-// Member functions are defined in Time.cpp
-// prevent multiple inclusions of header
-// Time class definition
-
 #ifndef TIME_H
 #define TIME_H
 
