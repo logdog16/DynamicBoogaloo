@@ -51,7 +51,16 @@ cout << ( (hour == 0 || hour == 12 ) ? 12 : hour % 12 ) << ":"
      return out;
  }
 
-  //Time& operator++ ()
-	//{
-	//  this.second++;
-	//}
+  Time &Time::operator++()
+		{
+	  	  if((this->second) != 60)
+	  	  {
+	  		this->second++;
+	  	  }
+	  	  else
+	  	  {
+	  		this->minute++;
+	  		this->second = 0;
+	  	  }
+	  	  return *this;
+		}
