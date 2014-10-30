@@ -43,6 +43,7 @@ cout << ( (hour == 0 || hour == 12 ) ? 12 : hour % 12 ) << ":"
  << second << (hour < 12 ? " AM" : " PM" );
  } // end function printStandard
 
+ //Overload the ostream operator
   ostream& operator<< (ostream &out, Time &ourTime)
  {
 
@@ -51,6 +52,7 @@ cout << ( (hour == 0 || hour == 12 ) ? 12 : hour % 12 ) << ":"
      return out;
  }
 
+  //Overload the pre decrementation
   Time &Time::operator++()
 		{
 	  	  if((this->second) != 60)
@@ -63,4 +65,19 @@ cout << ( (hour == 0 || hour == 12 ) ? 12 : hour % 12 ) << ":"
 	  		this->second = 0;
 	  	  }
 	  	  return *this;
+		}
+  //Post decrementing
+  Time Time::operator ++(int)
+		{
+	  Time temp = *this;
+	  if((this->second) != 60)
+	  	  	  {
+	  	  		this->second++;
+	  	  	  }
+	  	  	  else
+	  	  	  {
+	  	  		this->minute++;
+	  	  		this->second = 0;
+	  	  	  }
+	  return temp;
 		}
