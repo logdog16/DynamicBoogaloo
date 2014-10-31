@@ -11,6 +11,7 @@ class Time
  friend std::ostream& operator<< (std::ostream &, Time &);
  Time &operator++();
  Time operator++(int);
+ Time operator+=(int);
 
  private:
  int hour; // 0 - 23 (24-hour clock format)

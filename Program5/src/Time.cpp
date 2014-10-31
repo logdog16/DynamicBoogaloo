@@ -67,10 +67,10 @@ cout << ( (hour == 0 || hour == 12 ) ? 12 : hour % 12 ) << ":"
 	  	  return *this;
 		}
   //Post decrementing
-  Time Time::operator ++(int)
+  Time Time::operator++(int)
 		{
-	  Time temp = *this;
-	  if((this->second) != 60)
+	  	  Time temp = *this;
+	  	  if((this->second) != 60)
 	  	  	  {
 	  	  		this->second++;
 	  	  	  }
@@ -79,5 +79,17 @@ cout << ( (hour == 0 || hour == 12 ) ? 12 : hour % 12 ) << ":"
 	  	  		this->minute++;
 	  	  		this->second = 0;
 	  	  	  }
-	  return temp;
+	  	  return temp;
+		}
+  //Add to seconds
+  Time Time::operator+=(int secToAdd)
+		{
+	 this->second += secToAdd;
+
+	 if(this->second > 60)
+	 {
+		this->minute += this->second / 60;
+		this->second = this->second % 60;
+	 }
+	 return *this;
 		}
