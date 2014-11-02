@@ -1,6 +1,8 @@
 #ifndef TIME_H
 #define TIME_H
 
+#include <ostream>
+
 class Time
 {
  public:
@@ -8,7 +10,7 @@ class Time
  void setTime( int, int, int ); // set hour, minute and second
  void printUniversal(); // print time in universal-time format
  void printStandard(); // print time in standard-time format
- friend std::ostream& operator<< (std::ostream &, Time &);
+ friend std::ostream &operator<< (std::ostream &, Time &);
  Time &operator++();
  Time &operator++(int);
  Time operator+=(int);

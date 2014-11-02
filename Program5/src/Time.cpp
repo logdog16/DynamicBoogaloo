@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ostream>
 #include <iomanip>
 #include <stdexcept> // for invalid_argument exception class
 #include "Time.h"
@@ -44,7 +45,7 @@ void Time::printStandard()
 } // end function printStandard
 
 //Overload the ostream operator
-ostream& operator<< (ostream &out, Time &ourTime)
+std::ostream &operator<< (std::ostream &out, Time &ourTime)
 {
 
 	out << setfill('0') << setw( 2 ) << ourTime.hour << ":"
@@ -84,7 +85,7 @@ Time &Time::operator++()
 //Post decrementing
 Time &Time::operator++(int)
 {
-	Time temp = *this;
+	static Time temp = *this;
 
 	if((this->second) != 59)
 	{
