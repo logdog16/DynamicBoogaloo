@@ -61,8 +61,22 @@ Time &Time::operator++()
 	}
 	else
 	{
+		//Spill over to minute
 		this->minute++;
 		this->second = 0;
+
+			if(this->minute == 60)
+			{
+				//Spill over to hours
+				this->hour++;
+				this->minute = 0;
+
+				if(this->hour == 24)
+				{
+					//Spill over to new day
+					this->hour = 0;
+				}
+			}
 	}
 	return *this;
 }
@@ -71,7 +85,8 @@ Time &Time::operator++()
 Time &Time::operator++(int)
 {
 	Time temp = *this;
-	if((this->second) != 60)
+
+	if((this->second) != 59)
 	{
 		this->second++;
 	}
@@ -79,6 +94,18 @@ Time &Time::operator++(int)
 	{
 		this->minute++;
 		this->second = 0;
+
+			if(this->minute == 60)
+			{
+				this->hour++;
+				this->minute = 0;
+
+				if(this->hour == 24)
+				{
+					this->hour = 0;
+				}
+			}
+
 	}
 	//return temp;
 	return temp;
@@ -97,11 +124,13 @@ Time Time::operator+=(int secToAdd)
 	return *this;
 }
 
+//Convert to int
 Time::operator int()
 {
 	return (this->second + (this->minute * 60) + (this->hour * 60 * 60) );
 }
 
+//Check if both are equal
 bool  Time::operator==(Time secondTime)
 {
 	if ((this->hour == secondTime.hour) && (this->minute == secondTime.minute) && (this->second == secondTime.second))
@@ -114,11 +143,12 @@ bool  Time::operator==(Time secondTime)
 	}
 }
 
+//Mare sure they aren't equal
 bool  Time::operator!=(Time secondTime)
 {
 	return !(*this == secondTime);
 }
-
+//See if first is less than second time
 bool  Time::operator<(Time secondTime)
 {
 	if (this->hour > secondTime.hour)
@@ -138,7 +168,7 @@ bool  Time::operator<(Time secondTime)
 		return true;
 	}
 }
-
+//Less than or equal to second time
 bool  Time::operator<=(Time secondTime)
 {
 	if ((*this == secondTime) || *this < secondTime)
@@ -151,6 +181,7 @@ bool  Time::operator<=(Time secondTime)
 	}
 }
 
+//See if greater than second time
 bool Time::operator>(Time secondTime)
 {
 	if (this->hour < secondTime.hour)
@@ -171,6 +202,7 @@ bool Time::operator>(Time secondTime)
 	}
 }
 
+//See if greater than or equal to second time
 bool Time::operator>=(Time secondTime)
 {
 	if ((*this == secondTime) || *this > secondTime)
