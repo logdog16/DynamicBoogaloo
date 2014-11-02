@@ -10,8 +10,15 @@ class Time
  void printStandard(); // print time in standard-time format
  friend std::ostream& operator<< (std::ostream &, Time &);
  Time &operator++();
- Time operator++(int);
+ Time &operator++(int);
  Time operator+=(int);
+ operator int();
+ bool operator==(Time);
+ bool operator!=(Time);
+ bool operator<(Time);
+ bool operator<=(Time);
+ bool operator>(Time);
+ bool operator>=(Time);
 
  private:
  int hour; // 0 - 23 (24-hour clock format)
